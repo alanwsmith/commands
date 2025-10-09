@@ -1458,10 +1458,24 @@ window.BittyClass = class {
 </details>
 <details>
   <summary>deploy
-<div>WORK-IN-PROGRESS: merges <code>dev</code> into <code>main</code> for the current repo, pushes <code>main</code>, then switches back to <code>dev</code></div></summary>
+<div>merges <code>dev</code> into <code>main</code> for the current repo, pushes <code>main</code>, then switches back to <code>dev</code></div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
-<span class="line-marker"></span>git status | awk &#39;NR==2&#39;</span></code></pre>
+<span class="line-marker"></span>MESSAGE=&quot;${*}&quot;
+<span class="line-marker"></span>
+<span class="line-marker"></span>if [ &quot;$MESSAGE&quot; == &quot;&quot; ]; then
+<span class="line-marker"></span>  echo &quot;Missing commit message&quot;
+<span class="line-marker"></span>else 
+<span class="line-marker"></span>  STATUS=$(git status | sed -n &#39;$p&#39; | tr -d &#39;\n&#39;)
+<span class="line-marker"></span>  if [ &quot;$STATUS&quot; == &quot;nothing to commit, working tree clean&quot; ]; then
+<span class="line-marker"></span>    git checkout main &amp;&amp; \
+<span class="line-marker"></span>    git merge --no-ff dev -m &quot;$MESSAGE&quot; &amp;&amp; \
+<span class="line-marker"></span>    git push &amp;&amp; \
+<span class="line-marker"></span>    git checkout dev
+<span class="line-marker"></span>  else 
+<span class="line-marker"></span>    echo &quot;ERROR: There are uncomitted changes&quot;
+<span class="line-marker"></span>  fi
+<span class="line-marker"></span>fi</span></code></pre>
 </details>
 <details>
   <summary>deploy-aws
@@ -1520,13 +1534,6 @@ window.BittyClass = class {
 <span class="line-marker"></span>done &lt;&lt;&lt; $INITIAL_OUTPUT</span></code></pre>
 </details>
 <details>
-  <summary>gst
-<div>alias for <code>git status</code></div></summary>
-  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
-<span class="line-marker"></span>
-<span class="line-marker"></span>git status</span></code></pre>
-</details>
-<details>
   <summary>l
 <div>alias for <code>ls -lh</code></div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
@@ -1567,6 +1574,13 @@ window.BittyClass = class {
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>ls -lh</span></code></pre>
+</details>
+<details>
+  <summary>gst
+<div>alias for <code>git status</code></div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>git status</span></code></pre>
 </details>
       </main>
 
