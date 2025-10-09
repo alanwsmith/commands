@@ -1,17 +1,21 @@
 #!/bin/bash
 
 MESSAGE="${*}"
+ALT_MESSAGE="Deployment: ${date}"
 
-if [ "$MESSAGE" == "" ]; then
-  echo "Missing commit message"
-else 
-  STATUS=$(git status | sed -n '$p' | tr -d '\n')
-  if [ "$STATUS" == "nothing to commit, working tree clean" ]; then
+STATUS=$(git status | sed -n '$p' | tr -d '\n')
+if [ "$STATUS" == "nothing to commit, working tree clean" ]; then
+  if [ "$MESSAGE" == "" ]; then
+    git checkout main && \
+    git merge --no-ff dev -m "$ALT_MESSAGE" && \
+    git push && \
+    git checkout dev
+  else 
     git checkout main && \
     git merge --no-ff dev -m "$MESSAGE" && \
     git push && \
     git checkout dev
-  else 
-    echo "ERROR: There are uncomitted changes"
   fi
+else 
+  echo "ERROR: There are uncomitted changes"
 fi
