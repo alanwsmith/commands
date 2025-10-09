@@ -12,7 +12,7 @@
 [! for file in files !]
 [! if file.folder == "commands" !]
 <details>
-  <summary>[! include "commands/_details/" + file.name + ".html" !]</summary>
+  <summary>[@ file.name @] [! include "commands/_details/" + file.name + ".html" !]</summary>
   <pre class="code-block"><code>
     [@- highlight_file(file.folder + "/" + file.name )|safe -@]
   </code></pre>
