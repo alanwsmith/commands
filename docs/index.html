@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>This Website Needs A Name</title>
-    <meta property="og:title" content="This Website Needs A Name" />
+    <title>CLI Commands</title>
+    <meta property="og:title" content="CLI Commands" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta name="description" content="" />
     <meta property="og:description" content="" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.alanwsmith.com/" />
-    <meta property="og:image" content="https://www.alanwsmith.com/images/og-image.jpg" />
+    <meta property="og:url" content="https://commands.alanwsmith.com/" />
+    <meta property="og:image" content="https://commands.alanwsmith.com/images/og-image.jpg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
@@ -1378,7 +1378,17 @@ video {
 
 
 
-    </style>
+summary div {
+  border-top: var(--accent-border);
+  font-weight: 400;
+}
+
+.code-block {
+  background-color: var(--match-faded);
+  border-radius: var(--default-radius);
+  margin: var(--small-margin);
+  padding: var(--default-padding);
+}    </style>
 
     <script>
       setTimeout(() => { 
@@ -1404,26 +1414,181 @@ window.BittyClass = class {
 
       <header class="default-wrapper xlarge-bottom-margin">
         <div class="small-font">
-          made by <a href="https://www.alanwsmith.com/">alan w smith</a> ~  <a href="https://socials.alanwsmith.com/">socials</a> ~
+          made by <a href="https://www.alanwsmith.com/">alan w smith</a> ~ <a href="https:&#x2f;&#x2f;github.com&#x2f;alanwsmith&#x2f;commands">source</a> ~ <a href="https://socials.alanwsmith.com/">socials</a> ~
           <a href="https://links.alanwsmith.com/">other projects</a> ~
           <a href="https://www.alanwsmith.com/feeds/posts.xml">rss</a>
         </div>
         <hgroup class="large-top-margin">
-          <h1>A New Site</h1>
+          <h1>CLI Commands</h1>
           <div class="small-font accent-bottom-border">
-            With a subtitle
+            scripts and aliases for the command line
           </div>
         </hgroup>
       </header>
 
       <main class="default-wrapper default-flow">
-<p>Hello, world</p>      </main>
+<p>
+  I'm starting over with my collection of helpers and 
+  aliases for the command line. I don't do a lot with
+  them. Partially that's because I hadn't picked
+  a place to put them. We'll see if storing them
+  here encourages more of them. 
+</p>
+
+<details>
+  <summary>ads-off
+<div>update <code>/etc/hosts</code> to blackhole ad domains</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>sudo sed -i -E &#39;s/^# 0.0.0.0/0.0.0.0/g&#39; &quot;/etc/hosts&quot;</span></code></pre>
+</details>
+<details>
+  <summary>ads-on
+<div>update <code>/etc/hosts</code> turn off ad domain blackholes</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>sudo sed -i -E &#39;s/^0.0.0.0/# 0.0.0.0/g&#39; &quot;/etc/hosts&quot;</span></code></pre>
+</details>
+<details>
+  <summary>bsync
+<div>start browser-sync in the current directory</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>browser-sync . --port 3993 --watch --index &quot;index.html&quot; --no-notify --no-inject-changes --reload-debounce --no-ghost-mode</span></code></pre>
+</details>
+<details>
+  <summary>deploy
+<div>merges <code>dev</code> into <code>main</code> for the current repo, pushes <code>main</code>, then switches back to <code>dev</code></div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>MESSAGE=&quot;${*}&quot;
+<span class="line-marker"></span>
+<span class="line-marker"></span>if [ &quot;$MESSAGE&quot; == &quot;&quot; ]; then
+<span class="line-marker"></span>  echo &quot;Missing commit message&quot;
+<span class="line-marker"></span>else 
+<span class="line-marker"></span>  STATUS=$(git status | sed -n &#39;$p&#39; | tr -d &#39;\n&#39;)
+<span class="line-marker"></span>  if [ &quot;$STATUS&quot; == &quot;nothing to commit, working tree clean&quot; ]; then
+<span class="line-marker"></span>    git checkout main &amp;&amp; \
+<span class="line-marker"></span>    git merge --no-ff dev -m &quot;$MESSAGE&quot; &amp;&amp; \
+<span class="line-marker"></span>    git push &amp;&amp; \
+<span class="line-marker"></span>    git checkout dev
+<span class="line-marker"></span>  else 
+<span class="line-marker"></span>    echo &quot;ERROR: There are uncomitted changes&quot;
+<span class="line-marker"></span>  fi
+<span class="line-marker"></span>fi</span></code></pre>
+</details>
+<details>
+  <summary>deploy-aws
+<div>deploys alanwsmith.com</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>cd /Users/alan/Documents/Neopoligen/alanwsmith.com &amp;&amp; \
+<span class="line-marker"></span>git add . &amp;&amp; \
+<span class="line-marker"></span>git commit -m&quot;Updates&quot; &amp;&amp; \
+<span class="line-marker"></span>git push</span></code></pre>
+</details>
+<details>
+  <summary>dt
+<div>alias for <code>cd ~/Desktop</code></div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>cd ~/Desktop</span></code></pre>
+</details>
+<details>
+  <summary>gcom Commit message goes here. 
+<div>do <code>git add .</code> then <code>git commit -m"TEXT"</code>. Uses <code>"${*}"</code>. Quoting genearlly not necessary.</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>git add .
+<span class="line-marker"></span>git commit -m &quot;${*}&quot;</span></code></pre>
+</details>
+<details>
+  <summary>ghcs new-site-name
+<div>create a new site repo from the ssb-template and clone it down</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>gh repo new &quot;$1&quot; --public -p ssb-template --clone</span></code></pre>
+</details>
+<details>
+  <summary>gl
+<div>pretty output from git log (currently not making newlines properly)</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span># Grab the initial output from git log and reverse it.
+<span class="line-marker"></span>INITIAL_OUTPUT=$(git log --decorate --oneline --abbrev-commit --graph --all --color=always | sed &#39;1!G;h;$!d&#39;) 
+<span class="line-marker"></span># Loop through it line by line
+<span class="line-marker"></span>while read THE_LINE
+<span class="line-marker"></span>do
+<span class="line-marker"></span>  # Just output it if it&#39;s a commit (identifed by a &quot;*&quot;)
+<span class="line-marker"></span>  if [[ &quot;$THE_LINE&quot; =~ &#39;\*&#39; ]]; then
+<span class="line-marker"></span>    echo &quot;$THE_LINE&quot;
+<span class="line-marker"></span>  # Otherwise, flip the &quot;/&quot; and &quot;\&quot; characters
+<span class="line-marker"></span>  else
+<span class="line-marker"></span>    # Figure out which way to flip
+<span class="line-marker"></span>    if [[ &quot;$THE_LINE&quot; =~ &#39;/&#39; ]]; then
+<span class="line-marker"></span>      echo &quot;$THE_LINE&quot; | sed &#39;s/\//\\/g;&#39;
+<span class="line-marker"></span>    else
+<span class="line-marker"></span>      echo &quot;$THE_LINE&quot; | sed &#39;s/\\/\//g;&#39;
+<span class="line-marker"></span>    fi
+<span class="line-marker"></span>  fi
+<span class="line-marker"></span>done &lt;&lt;&lt; $INITIAL_OUTPUT</span></code></pre>
+</details>
+<details>
+  <summary>l
+<div>alias for <code>ls -lh</code></div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>ls -lh</span></code></pre>
+</details>
+<details>
+  <summary>la
+<div>alias for <code>ls -lah</code></div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>ls -lah</span></code></pre>
+</details>
+<details>
+  <summary>ll
+<div>alias for <code>ls -lh</code></div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>ls -lh</span></code></pre>
+</details>
+<details>
+  <summary>nv (or nv FILENAME)
+<div>because typing <code>nvim</code> is too many characters</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>nvim &quot;$1&quot;</span></code></pre>
+</details>
+<details>
+  <summary>rgf
+<div>list files with ripgrep matches instead of lines</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>rg -l &quot;$1&quot; *</span></code></pre>
+</details>
+<details>
+  <summary>sl
+<div>alias for <code>ls -lh</code></div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>ls -lh</span></code></pre>
+</details>
+<details>
+  <summary>gst
+<div>alias for <code>git status</code></div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>git status</span></code></pre>
+</details>
+      </main>
 
       <footer>
         <div class="small-font">
           <div>
           made by <a href="https://www.alanwsmith.com/">alan w smith</a>
-          </div><a href="https://socials.alanwsmith.com/">socials</a> ~
+          </div><a href="https:&#x2f;&#x2f;github.com&#x2f;alanwsmith&#x2f;commands">source</a> ~ <a href="https://socials.alanwsmith.com/">socials</a> ~
           <a href="https://links.alanwsmith.com/">other projects</a> ~
           <a href="https://www.alanwsmith.com/feeds/posts.xml">rss</a>
         </div>

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+MESSAGE="${*}"
+
+if [ "$MESSAGE" == "" ]; then
+  echo "Missing commit message"
+else 
+  STATUS=$(git status | sed -n '$p' | tr -d '\n')
+  if [ "$STATUS" == "nothing to commit, working tree clean" ]; then
+    git checkout main && \
+    git merge --no-ff dev -m "$MESSAGE" && \
+    git push && \
+    git checkout dev
+  else 
+    echo "ERROR: There are uncomitted changes"
+  fi
+fi

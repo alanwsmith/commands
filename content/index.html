@@ -1,8 +1,24 @@
 [!- extends "_wrappers/wrapper.html" -!]
 
 [!- block main -!]
+<p>
+  I'm starting over with my collection of helpers and 
+  aliases for the command line. I don't do a lot with
+  them. Partially that's because I hadn't picked
+  a place to put them. We'll see if storing them
+  here encourages more of them. 
+</p>
 
-<p>Hello, world</p>
+[! for file in files !]
+[! if file.folder == "commands" !]
+<details>
+  <summary>[! include "commands/_details/" + file.name + ".html" !]</summary>
+  <pre class="code-block"><code>
+    [@- highlight_file(file.folder + "/" + file.name )|safe -@]
+  </code></pre>
+</details>
+[! endif !]
+[! endfor !]
 
 [!- endblock -!]
 

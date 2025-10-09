@@ -1,1 +1,11 @@
-[# CSS go here #]
+summary div {
+  border-top: var(--accent-border);
+  font-weight: 400;
+}
+
+.code-block {
+  background-color: var(--match-faded);
+  border-radius: var(--default-radius);
+  margin: var(--small-margin);
+  padding: var(--default-padding);
+}

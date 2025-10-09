@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd /Users/alan/Documents/Neopoligen/alanwsmith.com && \
+git add . && \
+git commit -m"Updates" && \
+git push

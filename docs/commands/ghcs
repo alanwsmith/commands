@@ -1,0 +1,3 @@
+#!/bin/bash
+
+gh repo new "$1" --public -p ssb-template --clone
