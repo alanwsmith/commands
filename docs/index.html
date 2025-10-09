@@ -1421,11 +1421,63 @@ window.BittyClass = class {
 
       <main class="default-wrapper default-flow">
 <details>
+  <summary>bsync
+<div>start browser-sync in the current directory</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>browser-sync . --port 3993 --watch --index &quot;index.html&quot; --no-notify --no-inject-changes --reload-debounce --no-ghost-mode</span></code></pre>
+</details>
+<details>
+  <summary>deploy-aws
+<div>deploys alanwsmith.com</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>cd /Users/alan/Documents/Neopoligen/alanwsmith.com &amp;&amp; \
+<span class="line-marker"></span>git add . &amp;&amp; \
+<span class="line-marker"></span>git commit -m&quot;Updates&quot; &amp;&amp; \
+<span class="line-marker"></span>git push</span></code></pre>
+</details>
+<details>
+  <summary>dt
+<div>alias for <code>cd ~/Desktop</code></div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>cd ~/Desktop</span></code></pre>
+</details>
+<details>
   <summary>ghcs "NEW_SITE"
-<div>Create a new site repo from the ssb-template and clone it down</div></summary>
+<div>create a new site repo from the ssb-template and clone it down</div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>gh repo new &quot;$1&quot; --public -p ssb-template --clone</span></code></pre>
+</details>
+<details>
+  <summary>l
+<div>alias for <code>ls -lh</code></div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>ls -lh</span></code></pre>
+</details>
+<details>
+  <summary>la
+<div>alias for <code>ls -lah</code></div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>ls -lah</span></code></pre>
+</details>
+<details>
+  <summary>ll
+<div>alias for <code>ls -lh</code></div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>ls -lh</span></code></pre>
+</details>
+<details>
+  <summary>sl
+<div>alias for <code>ls -lh</code></div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>ls -lh</span></code></pre>
 </details>
       </main>
 

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+browser-sync . --port 3993 --watch --index "index.html" --no-notify --no-inject-changes --reload-debounce --no-ghost-mode
+
