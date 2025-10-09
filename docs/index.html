@@ -1381,6 +1381,13 @@ video {
 summary div {
   border-top: var(--accent-border);
   font-weight: 400;
+}
+
+.code-block {
+  background-color: var(--match-faded);
+  border-radius: var(--default-radius);
+  margin: var(--small-margin);
+  padding: var(--default-padding);
 }    </style>
 
     <script>
@@ -1420,6 +1427,28 @@ window.BittyClass = class {
       </header>
 
       <main class="default-wrapper default-flow">
+<p>
+  I'm starting over with my collection of helpers and 
+  aliases for the command line. I don't do a lot with
+  them. Partially that's because I hadn't picked
+  a place to put them. We'll see if storing them
+  here encourages more of them. 
+</p>
+
+<details>
+  <summary>ads-off
+<div>update <code>/etc/hosts</code> to blackhole ad domains</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>sudo sed -i -E &#39;s/^# 0.0.0.0/0.0.0.0/g&#39; &quot;/etc/hosts&quot;</span></code></pre>
+</details>
+<details>
+  <summary>ads-on
+<div>update <code>/etc/hosts</code> turn off ad domain blackholes</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>sudo sed -i -E &#39;s/^0.0.0.0/# 0.0.0.0/g&#39; &quot;/etc/hosts&quot;</span></code></pre>
+</details>
 <details>
   <summary>bsync
 <div>start browser-sync in the current directory</div></summary>
@@ -1452,6 +1481,30 @@ window.BittyClass = class {
 <span class="line-marker"></span>gh repo new &quot;$1&quot; --public -p ssb-template --clone</span></code></pre>
 </details>
 <details>
+  <summary>gl
+<div>pretty output from git log</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span># Grab the initial output from git log and reverse it.
+<span class="line-marker"></span>INITIAL_OUTPUT=$(git log --decorate --oneline --abbrev-commit --graph --all --color=always | sed &#39;1!G;h;$!d&#39;) 
+<span class="line-marker"></span># Loop through it line by line
+<span class="line-marker"></span>while read -r THE_LINE
+<span class="line-marker"></span>do
+<span class="line-marker"></span>  # Just output it if it&#39;s a commit (identifed by a &quot;*&quot;)
+<span class="line-marker"></span>  if [[ &quot;$THE_LINE&quot; =~ &#39;\*&#39; ]]; then
+<span class="line-marker"></span>    echo &quot;$THE_LINE&quot;
+<span class="line-marker"></span>  # Otherwise, flip the &quot;/&quot; and &quot;\&quot; characters
+<span class="line-marker"></span>  else
+<span class="line-marker"></span>    # Figure out which way to flip
+<span class="line-marker"></span>    if [[ &quot;$THE_LINE&quot; =~ &#39;/&#39; ]]; then
+<span class="line-marker"></span>      echo &quot;$THE_LINE&quot; | sed &#39;s/\//\\/g;&#39;
+<span class="line-marker"></span>    else
+<span class="line-marker"></span>      echo &quot;$THE_LINE&quot; | sed &#39;s/\\/\//g;&#39;
+<span class="line-marker"></span>    fi
+<span class="line-marker"></span>  fi
+<span class="line-marker"></span>done &lt;&lt;&lt; $INITIAL_OUTPUT</span></code></pre>
+</details>
+<details>
   <summary>l
 <div>alias for <code>ls -lh</code></div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
@@ -1471,6 +1524,20 @@ window.BittyClass = class {
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>ls -lh</span></code></pre>
+</details>
+<details>
+  <summary>nv (or nv FILENAME)
+<div>because typing <code>nvim</code> is too many characters</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>nvim &quot;$1&quot;</span></code></pre>
+</details>
+<details>
+  <summary>rgf
+<div>list files with ripgrep matches instead of lines</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>rg -l &quot;$1&quot; *</span></code></pre>
 </details>
 <details>
   <summary>sl
