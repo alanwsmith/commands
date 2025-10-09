@@ -3,4 +3,6 @@
 gh repo new "$1" --public -p ssb-template --clone && \
 cd "$1" && \
 git checkout -b dev && \
-netlify init
+netlify init &&
+netlify open
+
