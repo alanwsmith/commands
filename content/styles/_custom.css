@@ -1,1 +1,4 @@
-[# CSS go here #]
+summary div {
+  border-top: var(--accent-border);
+  font-weight: 400;
+}

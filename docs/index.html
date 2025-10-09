@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>This Website Needs A Name</title>
-    <meta property="og:title" content="This Website Needs A Name" />
+    <title>CLI Commands</title>
+    <meta property="og:title" content="CLI Commands" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta name="description" content="" />
     <meta property="og:description" content="" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.alanwsmith.com/" />
-    <meta property="og:image" content="https://www.alanwsmith.com/images/og-image.jpg" />
+    <meta property="og:url" content="https://commands.alanwsmith.com/" />
+    <meta property="og:image" content="https://commands.alanwsmith.com/images/og-image.jpg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
@@ -1378,7 +1378,10 @@ video {
 
 
 
-    </style>
+summary div {
+  border-top: var(--accent-border);
+  font-weight: 400;
+}    </style>
 
     <script>
       setTimeout(() => { 
@@ -1404,26 +1407,33 @@ window.BittyClass = class {
 
       <header class="default-wrapper xlarge-bottom-margin">
         <div class="small-font">
-          made by <a href="https://www.alanwsmith.com/">alan w smith</a> ~  <a href="https://socials.alanwsmith.com/">socials</a> ~
+          made by <a href="https://www.alanwsmith.com/">alan w smith</a> ~ <a href="https:&#x2f;&#x2f;github.com&#x2f;alanwsmith&#x2f;commands">source</a> ~ <a href="https://socials.alanwsmith.com/">socials</a> ~
           <a href="https://links.alanwsmith.com/">other projects</a> ~
           <a href="https://www.alanwsmith.com/feeds/posts.xml">rss</a>
         </div>
         <hgroup class="large-top-margin">
-          <h1>A New Site</h1>
+          <h1>CLI Commands</h1>
           <div class="small-font accent-bottom-border">
-            With a subtitle
+            scripts and aliases for the command line
           </div>
         </hgroup>
       </header>
 
       <main class="default-wrapper default-flow">
-<p>Hello, world</p>      </main>
+<details>
+  <summary>ghcs "NEW_SITE"
+<div>Create a new site repo from the ssb-template and clone it down</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>gh repo new &quot;$1&quot; --public -p ssb-template --clone</span></code></pre>
+</details>
+      </main>
 
       <footer>
         <div class="small-font">
           <div>
           made by <a href="https://www.alanwsmith.com/">alan w smith</a>
-          </div><a href="https://socials.alanwsmith.com/">socials</a> ~
+          </div><a href="https:&#x2f;&#x2f;github.com&#x2f;alanwsmith&#x2f;commands">source</a> ~ <a href="https://socials.alanwsmith.com/">socials</a> ~
           <a href="https://links.alanwsmith.com/">other projects</a> ~
           <a href="https://www.alanwsmith.com/feeds/posts.xml">rss</a>
         </div>
