@@ -3,7 +3,7 @@
 # Grab the initial output from git log and reverse it.
 INITIAL_OUTPUT=$(git log --decorate --oneline --abbrev-commit --graph --all --color=always | sed '1!G;h;$!d') 
 # Loop through it line by line
-while read -r THE_LINE
+while read THE_LINE
 do
   # Just output it if it's a commit (identifed by a "*")
   if [[ "$THE_LINE" =~ '\*' ]]; then
