@@ -1436,22 +1436,20 @@ window.BittyClass = class {
 </p>
 
 <details>
-  <summary>ads-off
-<div>update <code>/etc/hosts</code> to blackhole ad domains</div></summary>
+  <summary>ads-off <div>update <code>/etc/hosts</code> to blackhole ad domains</div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>sudo sed -i -E &#39;s/^# 0.0.0.0/0.0.0.0/g&#39; &quot;/etc/hosts&quot;</span></code></pre>
 </details>
 <details>
-  <summary>ads-on
+  <summary>ads-on 
 <div>update <code>/etc/hosts</code> turn off ad domain blackholes</div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>sudo sed -i -E &#39;s/^0.0.0.0/# 0.0.0.0/g&#39; &quot;/etc/hosts&quot;</span></code></pre>
 </details>
 <details>
-  <summary>bsync
-<div>start browser-sync in the current directory</div></summary>
+  <summary>bsync <div>start browser-sync in the current directory</div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>browser-sync . --port 3993 --watch --index &quot;index.html&quot; --no-notify --no-inject-changes --reload-debounce --no-ghost-mode</span></code></pre>
@@ -1465,8 +1463,7 @@ window.BittyClass = class {
 <span class="line-marker"></span>git commit -m &quot;${*}&quot;</span></code></pre>
 </details>
 <details>
-  <summary>deploy
-<div>merges <code>dev</code> into <code>main</code> for the current repo, pushes <code>main</code>, then switches back to <code>dev</code></div></summary>
+  <summary>deploy <div>merges <code>dev</code> into <code>main</code> for the current repo, pushes <code>main</code>, then switches back to <code>dev</code></div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>MESSAGE=&quot;${*}&quot;
@@ -1490,8 +1487,7 @@ window.BittyClass = class {
 <span class="line-marker"></span>fi</span></code></pre>
 </details>
 <details>
-  <summary>deploy-aws
-<div>deploys alanwsmith.com</div></summary>
+  <summary>deploy-aws <div>deploys alanwsmith.com</div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>cd /Users/alan/Documents/Neopoligen/alanwsmith.com &amp;&amp; \
@@ -1500,15 +1496,13 @@ window.BittyClass = class {
 <span class="line-marker"></span>git push</span></code></pre>
 </details>
 <details>
-  <summary>dt
-<div>alias for <code>cd ~/Desktop</code></div></summary>
+  <summary>dt <div>alias for <code>cd ~/Desktop</code></div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>cd ~/Desktop</span></code></pre>
 </details>
 <details>
-  <summary>gl
-<div>pretty output from git log (currently not making newlines properly)</div></summary>
+  <summary>glog <div>pretty output from git log (currently not making newlines properly)</div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span># Grab the initial output from git log and reverse it.
@@ -1531,22 +1525,19 @@ window.BittyClass = class {
 <span class="line-marker"></span>done &lt;&lt;&lt; $INITIAL_OUTPUT</span></code></pre>
 </details>
 <details>
-  <summary>l
-<div>alias for <code>ls -lh</code></div></summary>
+  <summary>l <div>alias for <code>ls -lh</code></div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>ls -lh</span></code></pre>
 </details>
 <details>
-  <summary>la
-<div>alias for <code>ls -lah</code></div></summary>
+  <summary>la <div>alias for <code>ls -lah</code></div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>ls -lah</span></code></pre>
 </details>
 <details>
-  <summary>ll
-<div>alias for <code>ls -lh</code></div></summary>
+  <summary>ll <div>alias for <code>ls -lh</code></div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>ls -lh</span></code></pre>
@@ -1569,22 +1560,19 @@ window.BittyClass = class {
 <span class="line-marker"></span>nvim &quot;$1&quot;</span></code></pre>
 </details>
 <details>
-  <summary>rgf
-<div>list files with ripgrep matches instead of lines</div></summary>
+  <summary>rgfile <div>list files with ripgrep matches instead of lines</div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>rg -l &quot;$1&quot; *</span></code></pre>
 </details>
 <details>
-  <summary>sl
-<div>alias for <code>ls -lh</code></div></summary>
+  <summary>sl <div>alias for <code>ls -lh</code></div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>ls -lh</span></code></pre>
 </details>
 <details>
-  <summary>status
-<div>alias for <code>git status</code></div></summary>
+  <summary>status <div>alias for <code>git status</code></div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>git status</span></code></pre>
