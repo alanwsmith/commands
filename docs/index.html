@@ -1457,6 +1457,13 @@ window.BittyClass = class {
 <span class="line-marker"></span>browser-sync . --port 3993 --watch --index &quot;index.html&quot; --no-notify --no-inject-changes --reload-debounce --no-ghost-mode</span></code></pre>
 </details>
 <details>
+  <summary>deploy
+<div>WORK-IN-PROGRESS: merges <code>dev</code> into <code>main</code> for the current repo, pushes <code>main</code>, then switches back to <code>dev</code></div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>git status</span></code></pre>
+</details>
+<details>
   <summary>deploy-aws
 <div>deploys alanwsmith.com</div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
@@ -1474,7 +1481,15 @@ window.BittyClass = class {
 <span class="line-marker"></span>cd ~/Desktop</span></code></pre>
 </details>
 <details>
-  <summary>ghcs "NEW_SITE"
+  <summary>gcom Commit message goes here. 
+<div>do <code>git add .</code> then <code>git commit -m"TEXT"</code>. Uses <code>"${*}"</code>. Quoting genearlly not necessary.</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>git add .
+<span class="line-marker"></span>git commit -m &quot;${*}&quot;</span></code></pre>
+</details>
+<details>
+  <summary>ghcs new-site-name
 <div>create a new site repo from the ssb-template and clone it down</div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
@@ -1482,13 +1497,13 @@ window.BittyClass = class {
 </details>
 <details>
   <summary>gl
-<div>pretty output from git log</div></summary>
+<div>pretty output from git log (currently not making newlines properly)</div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span># Grab the initial output from git log and reverse it.
 <span class="line-marker"></span>INITIAL_OUTPUT=$(git log --decorate --oneline --abbrev-commit --graph --all --color=always | sed &#39;1!G;h;$!d&#39;) 
 <span class="line-marker"></span># Loop through it line by line
-<span class="line-marker"></span>while read -r THE_LINE
+<span class="line-marker"></span>while read THE_LINE
 <span class="line-marker"></span>do
 <span class="line-marker"></span>  # Just output it if it&#39;s a commit (identifed by a &quot;*&quot;)
 <span class="line-marker"></span>  if [[ &quot;$THE_LINE&quot; =~ &#39;\*&#39; ]]; then
@@ -1503,6 +1518,13 @@ window.BittyClass = class {
 <span class="line-marker"></span>    fi
 <span class="line-marker"></span>  fi
 <span class="line-marker"></span>done &lt;&lt;&lt; $INITIAL_OUTPUT</span></code></pre>
+</details>
+<details>
+  <summary>gst
+<div>alias for <code>git status</code></div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>git status</span></code></pre>
 </details>
 <details>
   <summary>l
