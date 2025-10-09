@@ -1507,13 +1507,6 @@ window.BittyClass = class {
 <span class="line-marker"></span>cd ~/Desktop</span></code></pre>
 </details>
 <details>
-  <summary>ghcs new-site-name
-<div>create a new site repo from the ssb-template and clone it down</div></summary>
-  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
-<span class="line-marker"></span>
-<span class="line-marker"></span>gh repo new &quot;$1&quot; --public -p ssb-template --clone</span></code></pre>
-</details>
-<details>
   <summary>gl
 <div>pretty output from git log (currently not making newlines properly)</div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
@@ -1557,6 +1550,16 @@ window.BittyClass = class {
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>ls -lh</span></code></pre>
+</details>
+<details>
+  <summary>new-site new-site-name
+<div>create a new site repo from the ssb-template, clone it down, move into it and create a <code>dev</code> branch</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>gh repo new &quot;$1&quot; --public -p ssb-template --clone
+<span class="line-marker"></span>cd &quot;$1&quot;
+<span class="line-marker"></span>git checkout -b dev
+<span class="line-marker"></span>netlify init</span></code></pre>
 </details>
 <details>
   <summary>nv (or nv FILENAME)
