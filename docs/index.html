@@ -1457,24 +1457,36 @@ window.BittyClass = class {
 <span class="line-marker"></span>browser-sync . --port 3993 --watch --index &quot;index.html&quot; --no-notify --no-inject-changes --reload-debounce --no-ghost-mode</span></code></pre>
 </details>
 <details>
+  <summary>commit Commit message goes here. 
+<div>do <code>git add .</code> then <code>git commit -m"TEXT"</code>. Uses <code>"${*}"</code>. Quoting genearlly not necessary.</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>git add .
+<span class="line-marker"></span>git commit -m &quot;${*}&quot;</span></code></pre>
+</details>
+<details>
   <summary>deploy
 <div>merges <code>dev</code> into <code>main</code> for the current repo, pushes <code>main</code>, then switches back to <code>dev</code></div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>MESSAGE=&quot;${*}&quot;
+<span class="line-marker"></span>ALT_MESSAGE=&quot;Deployment: ${date}&quot;
 <span class="line-marker"></span>
-<span class="line-marker"></span>if [ &quot;$MESSAGE&quot; == &quot;&quot; ]; then
-<span class="line-marker"></span>  echo &quot;Missing commit message&quot;
-<span class="line-marker"></span>else 
-<span class="line-marker"></span>  STATUS=$(git status | sed -n &#39;$p&#39; | tr -d &#39;\n&#39;)
-<span class="line-marker"></span>  if [ &quot;$STATUS&quot; == &quot;nothing to commit, working tree clean&quot; ]; then
+<span class="line-marker"></span>STATUS=$(git status | sed -n &#39;$p&#39; | tr -d &#39;\n&#39;)
+<span class="line-marker"></span>if [ &quot;$STATUS&quot; == &quot;nothing to commit, working tree clean&quot; ]; then
+<span class="line-marker"></span>  if [ &quot;$MESSAGE&quot; == &quot;&quot; ]; then
+<span class="line-marker"></span>    git checkout main &amp;&amp; \
+<span class="line-marker"></span>    git merge --no-ff dev -m &quot;$ALT_MESSAGE&quot; &amp;&amp; \
+<span class="line-marker"></span>    git push &amp;&amp; \
+<span class="line-marker"></span>    git checkout dev
+<span class="line-marker"></span>  else 
 <span class="line-marker"></span>    git checkout main &amp;&amp; \
 <span class="line-marker"></span>    git merge --no-ff dev -m &quot;$MESSAGE&quot; &amp;&amp; \
 <span class="line-marker"></span>    git push &amp;&amp; \
 <span class="line-marker"></span>    git checkout dev
-<span class="line-marker"></span>  else 
-<span class="line-marker"></span>    echo &quot;ERROR: There are uncomitted changes&quot;
 <span class="line-marker"></span>  fi
+<span class="line-marker"></span>else 
+<span class="line-marker"></span>  echo &quot;ERROR: There are uncomitted changes&quot;
 <span class="line-marker"></span>fi</span></code></pre>
 </details>
 <details>
@@ -1493,14 +1505,6 @@ window.BittyClass = class {
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>cd ~/Desktop</span></code></pre>
-</details>
-<details>
-  <summary>gcom Commit message goes here. 
-<div>do <code>git add .</code> then <code>git commit -m"TEXT"</code>. Uses <code>"${*}"</code>. Quoting genearlly not necessary.</div></summary>
-  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
-<span class="line-marker"></span>
-<span class="line-marker"></span>git add .
-<span class="line-marker"></span>git commit -m &quot;${*}&quot;</span></code></pre>
 </details>
 <details>
   <summary>ghcs new-site-name
@@ -1576,7 +1580,7 @@ window.BittyClass = class {
 <span class="line-marker"></span>ls -lh</span></code></pre>
 </details>
 <details>
-  <summary>gst
+  <summary>status
 <div>alias for <code>git status</code></div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
