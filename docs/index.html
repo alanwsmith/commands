@@ -1456,10 +1456,11 @@ window.BittyClass = class {
 </details>
 <details>
   <summary>commit Commit message goes here. 
-<div>do <code>git add .</code> then <code>git commit -m"TEXT"</code>. Uses <code>"${*}"</code>. Quoting genearlly not necessary.</div></summary>
+<div>does <code>git add -A</code> to add all files in the repo, then <code>git commit -m"TEXT"</code>. Uses <code>"${*}"</code>. Standard quoting rules apply.</div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
-<span class="line-marker"></span>git commit -a -m &quot;${*}&quot;</span></code></pre>
+<span class="line-marker"></span>git add -A
+<span class="line-marker"></span>git commit -m &quot;${*}&quot;</span></code></pre>
 </details>
 <details>
   <summary>dt <div>alias for <code>cd ~/Desktop</code></div></summary>
