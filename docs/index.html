@@ -1449,6 +1449,15 @@ window.BittyClass = class {
 <span class="line-marker"></span>sudo sed -i -E &#39;s/^0.0.0.0/# 0.0.0.0/g&#39; &quot;/etc/hosts&quot;</span></code></pre>
 </details>
 <details>
+  <summary>aws-push <div>deploys alanwsmith.com</div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>cd /Users/alan/Documents/Neopoligen/alanwsmith.com &amp;&amp; \
+<span class="line-marker"></span>git add . &amp;&amp; \
+<span class="line-marker"></span>git commit -m&quot;Updates&quot; &amp;&amp; \
+<span class="line-marker"></span>git push</span></code></pre>
+</details>
+<details>
   <summary>bsync <div>start browser-sync in the current directory</div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
@@ -1517,6 +1526,7 @@ window.BittyClass = class {
 <span class="line-marker"></span>gh repo new &quot;$1&quot; --public -p ssb-template --clone &amp;&amp; \
 <span class="line-marker"></span>cd &quot;$1&quot; &amp;&amp; \
 <span class="line-marker"></span>git checkout -b dev &amp;&amp; \
+<span class="line-marker"></span>echo &quot;$1&quot; | tr -d &#39;\n&#39; | pbcopy &amp;&amp;
 <span class="line-marker"></span>netlify init &amp;&amp;
 <span class="line-marker"></span>netlify open</span></code></pre>
 </details>
@@ -1552,15 +1562,6 @@ window.BittyClass = class {
 <span class="line-marker"></span>fi</span></code></pre>
 </details>
 <details>
-  <summary>push-aws <div>deploys alanwsmith.com</div></summary>
-  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
-<span class="line-marker"></span>
-<span class="line-marker"></span>cd /Users/alan/Documents/Neopoligen/alanwsmith.com &amp;&amp; \
-<span class="line-marker"></span>git add . &amp;&amp; \
-<span class="line-marker"></span>git commit -m&quot;Updates&quot; &amp;&amp; \
-<span class="line-marker"></span>git push</span></code></pre>
-</details>
-<details>
   <summary>rgfiles <div>list files with ripgrep matches instead of lines</div></summary>
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
@@ -1585,6 +1586,12 @@ window.BittyClass = class {
   <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
 <span class="line-marker"></span>
 <span class="line-marker"></span>tmux a -t &quot;$1&quot;</span></code></pre>
+</details>
+<details>
+  <summary>tmla <div>alias for <code>tmux ls</code></div></summary>
+  <pre class="code-block"><code><span class="line-marker"></span><span class="text plain">#!/bin/bash
+<span class="line-marker"></span>
+<span class="line-marker"></span>tmux ls</span></code></pre>
 </details>
 <details>
   <summary>tmls <div>alias for <code>tmux ls</code></div>
