@@ -1,18 +1,19 @@
-#!/bin/bash
+#!/bin/bash -eu
 
 MESSAGE="${*}"
-ALT_MESSAGE="Deployment: ${date}"
+ALT_MESSAGE="Deployment: $(/bin/date)"
 
 STATUS=$(git status | sed -n '$p' | tr -d '\n')
 if [ "$STATUS" == "nothing to commit, working tree clean" ]; then
   if [ "$MESSAGE" == "" ]; then
     git checkout main && \
-    git merge --no-ff dev -m "$ALT_MESSAGE" && \
+    sleep 1
+    git merge -X theirs dev -m "$ALT_MESSAGE" && \
     git push && \
     git checkout dev
   else 
     git checkout main && \
-    git merge --no-ff dev -m "$MESSAGE" && \
+    git merge -X theirs dev -m "$MESSAGE" && \
     git push && \
     git checkout dev
   fi
